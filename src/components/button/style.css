@@ -1,0 +1,28 @@
+#button {
+  color: #fff;  
+  text-decoration: none;
+  border-radius: 5px;
+  box-shadow: none;
+  appearance: none;
+  border: none;
+  min-width: 100px;
+  margin: 10px 10px 10px 0;
+}
+
+.button-small {
+    font-size: 12px;
+    padding: 10px 20px;
+}
+
+.button-big {
+    font-size: 14px;
+    padding: 10px 30px;
+}
+
+.button-primary {
+    background-color: #519F03;
+}
+
+.button-secondary {
+    background-color: #9F2903;
+}

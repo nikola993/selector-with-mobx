@@ -1,0 +1,23 @@
+#element-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 135px;
+  padding: 10px;
+  background-color: #121212;
+  color: #fff;
+  margin: 0 10px 0 0;
+  border-radius: 5px;
+  padding-right: 0;
+}
+
+#item-element-button {
+  cursor: pointer;
+  background-color: transparent;
+  border: none;
+  border-left: 1px solid #fff;
+  color: #fff;
+  font-size: 16px;
+  padding: none;
+  padding: 0 12px;
+}

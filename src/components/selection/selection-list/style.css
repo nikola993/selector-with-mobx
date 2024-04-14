@@ -1,0 +1,10 @@
+
+#element-selection-list {
+  height: 400px;
+  overflow: auto;
+  background-color: #141414;
+  padding: 10px 20px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+}
+

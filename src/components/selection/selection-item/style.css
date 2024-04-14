@@ -1,0 +1,12 @@
+#selection-item {
+  display: flex;
+  align-items: center;
+  height: 45px;
+  color: #fff;
+}
+
+#selection-checkbox {
+  margin-right: 20px;
+  height: 16px;
+  width: 16px;
+}

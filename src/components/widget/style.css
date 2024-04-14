@@ -1,0 +1,18 @@
+#widget {
+  width: 600px;
+  margin: 0 auto;
+
+  font-family: Arial, sans-serif;
+}
+
+#selected-elements-wrapper {
+  display: flex;
+}
+
+p {
+  margin: 10px 0;
+}
+
+h1 {
+  margin: 15px 0;
+}
