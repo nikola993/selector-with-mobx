@@ -1,5 +1,3 @@
-import { observer } from "mobx-react-lite";
-
 import { ElementInterface } from "../../definitions";
 
 import './style.css';
@@ -9,7 +7,7 @@ type ItemElementProps = {
   handleOnClick: () => void
 }
 
-export const ItemElement = observer(({ element, handleOnClick }: ItemElementProps) => {
+export const ItemElement = ({ element, handleOnClick }: ItemElementProps) => {
   return (
     <div 
       id="element-wrapper" 
@@ -20,4 +18,4 @@ export const ItemElement = observer(({ element, handleOnClick }: ItemElementProp
         <button id="item-element-button" onClick={handleOnClick}>&#10005;</button>
     </div>
   );
-})
+}

@@ -1,21 +1,13 @@
-import { useContext } from "react"
 import { observer } from "mobx-react-lite"
-
-import { WidgetStoreContext } from "../../../store"
 
 import "./style.css"
 
-export const SelectionFilters = observer(() => {
-  const store = useContext(WidgetStoreContext)
+type SelectionFiltersProps = {
+  handleFilter: (event: React.ChangeEvent<HTMLSelectElement>) => void
+  handleSearch: (event: React.ChangeEvent<HTMLInputElement>) => void
+}
 
-  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
-    store.selectionStore.setSearch(event.target.value)
-  }
-
-  const handleFilter = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    store.selectionStore.setFilter(event.target.value)
-  }
-
+export const SelectionFilters = observer(({ handleFilter, handleSearch }: SelectionFiltersProps) => {
   return (
     <div id="filter-wrapper">
     <label htmlFor="search">Search:</label>

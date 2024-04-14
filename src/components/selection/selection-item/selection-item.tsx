@@ -1,5 +1,3 @@
-import { observer } from "mobx-react-lite"
-
 import { ElementInterface } from "../../../definitions"
 
 import './style.css'
@@ -10,7 +8,7 @@ type SelectionItemProps = {
   onSelect: () => void
 }
 
-export const SelectionItem = observer(({ element, disabled, onSelect}: SelectionItemProps) => {
+export const SelectionItem = ({ element, disabled, onSelect}: SelectionItemProps) => {
   return (
     <div id="selection-item">
       <input 
@@ -23,4 +21,4 @@ export const SelectionItem = observer(({ element, disabled, onSelect}: Selection
       <p>{element.name}</p>
     </div>
   )
-})
+}

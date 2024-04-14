@@ -1,7 +1,7 @@
 import { useContext } from "react";
 import { observer } from "mobx-react-lite";
 
-import { WidgetStoreContext } from "../../store";
+import { SelectionStoreContext } from "../../store";
 
 import { Button } from "../button/button";
 import { Selection } from "../selection/selection";
@@ -10,25 +10,23 @@ import './style.css';
 import { SelectedList } from "../selected-list/selected-list";
 
 export const Widget = observer(() => {
-  const store = useContext(WidgetStoreContext)
+  const store = useContext(SelectionStoreContext)
 
   return (
     <div id="widget">
       <h1>Select items</h1>
-      <p>You currently have {store.selectedElements.length} selected items.</p>
+      <p>You currently have {store.savedElements.length} selected items.</p>
       <SelectedList
-        selectedElements={store.selectedElements} 
-        handleSelectChange={(element) => store.removeSelectedElement(element)}
+        selectedElements={store.savedElements} 
+        handleSelectChange={(element) => store.removeElement(element)}
       />
       <Button 
         size="big" 
         type="primary" 
         text="Change my choice" 
-        onClick={() => store.selectionStore.setIsOpened(true)}
+        onClick={() => store.setIsOpened(true)}
       />
-      {store.selectionStore.isOpened && (
-        <Selection />
-      )}
+      {store.isOpened && (<Selection /> )}
     </div>
   )
 })

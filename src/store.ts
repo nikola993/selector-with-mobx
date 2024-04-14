@@ -16,18 +16,19 @@ class Element implements ElementInterface {
   id = uuidv4();
   name = "";
   selected = false;
+  saved = false;
 
   constructor(name: string) {
     makeAutoObservable(this);
     this.name = name;
   }
 
-  toggleElement() {
-    this.selected = !this.selected;
+  setSelectedElement(value: boolean) {
+    this.selected = value
   }
 
-  unselectElement() {
-    this.selected = false;
+  setSaveElement(value: boolean) {
+    this.saved = value;
   }
 }
 
@@ -36,12 +37,10 @@ class SelectionStore {
   filter: string = ''
   search: string = ''
   isOpened: boolean = false
-  widgetStore
 
-  constructor(widgetStore: WidgetStore, mockElements: Element[]){
+  constructor(mockElements: Element[]){
     makeAutoObservable(this)
     this.elements = mockElements
-    this.widgetStore = widgetStore
   }
 
   get isMaxSelected() {
@@ -62,8 +61,32 @@ class SelectionStore {
     });
   }
 
+  get savedElements() {
+    return selectionStore.elements.filter(element => element.saved)
+  }
+
   get selectedElements() {
     return this.elements.filter(element => element.selected)
+  }
+
+  removeElement(element: ElementInterface) {
+    element.setSaveElement(false)
+    element.setSelectedElement(false)
+  }
+
+  toggleSelected(element: ElementInterface) {
+    element.setSelectedElement(!element.selected)
+  }
+
+  saveSelectedElements() {
+    this.selectedElements.forEach(element => {
+      element.setSaveElement(true)
+    })
+    this.savedElements.forEach(element => {
+      if (!element.selected) {
+        element.setSaveElement(false)
+      }
+    })
   }
 
   setIsOpened(isOpened: boolean) {
@@ -83,29 +106,15 @@ class SelectionStore {
   }
 
   resetState() {
-    this.elements.forEach(element => element.selected = this.widgetStore.selectedElements.some(selectedElement => selectedElement.id === element.id))
+    this.selectedElements.forEach(element => {
+      if (!element.saved) {
+        element.setSelectedElement(false)
+      }
+    })
     this.filter = ''
     this.search = ''
   }
 }
 
-class WidgetStore {
-  selectedElements: Element[] = []
-  selectionStore: SelectionStore
-
-  constructor() {
-    makeAutoObservable(this)
-    this.selectionStore = new SelectionStore(this, mockElements())
-  }
-
-  removeSelectedElement(element: Element) {
-    element.unselectElement()
-    this.selectedElements.splice(this.selectedElements.indexOf(element), 1)
-  }
-
-  saveSelectedElements() {
-    this.selectedElements = this.selectionStore.selectedElements
-  }
-}
-
-export const WidgetStoreContext = createContext(new WidgetStore())
+const selectionStore = new SelectionStore(mockElements())
+export const SelectionStoreContext = createContext(selectionStore)

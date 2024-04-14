@@ -5,7 +5,7 @@ export type ElementType = {
 }
 
 export interface ElementInterface extends ElementType {
-  toggleElement(): void;
-  unselectElement(): void;
+  setSelectedElement(value: boolean): void;
+  setSaveElement(value: boolean): void;
 }
 
